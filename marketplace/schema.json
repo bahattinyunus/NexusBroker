@@ -1,0 +1,69 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NexusDirectListing",
+    "type": "object",
+    "properties": {
+        "listing_id": {
+            "type": "string"
+        },
+        "owner_address": {
+            "type": "string",
+            "description": "Blockchain wallet address of the owner"
+        },
+        "asset_type": {
+            "enum": [
+                "real_estate",
+                "maritime",
+                "vehicle",
+                "commodity"
+            ]
+        },
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "price": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "currency": {
+                    "type": "string",
+                    "default": "USDT"
+                }
+            }
+        },
+        "location": {
+            "type": "object",
+            "properties": {
+                "lat": {
+                    "type": "number"
+                },
+                "lng": {
+                    "type": "number"
+                },
+                "address": {
+                    "type": "string"
+                }
+            }
+        },
+        "trust_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+        },
+        "verified": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "listing_id",
+        "owner_address",
+        "asset_type",
+        "title",
+        "price"
+    ]
+}

@@ -1,0 +1,65 @@
+<svg width="1500" height="400" viewBox="0 0 1500 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Gradient -->
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#020617;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+        </linearGradient>
+        <radialGradient id="nexusPulse" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:0.6" />
+            <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:0" />
+        </radialGradient>
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Background -->
+    <rect width="100%" height="100%" fill="url(#bgGrad)" />
+    
+    <!-- Decorative Grid -->
+    <path d="M 0 50 L 1500 50 M 0 100 L 1500 100 M 0 150 L 1500 150 M 0 200 L 1500 200 M 0 250 L 1500 250 M 0 300 L 1500 300 M 0 350 L 1500 350" stroke="#1e293b" stroke-width="1" />
+    <path d="M 100 0 L 100 400 M 200 0 L 200 400 M 300 0 L 300 400 M 400 0 L 400 400 M 500 0 L 500 400 M 600 0 L 600 400 M 700 0 L 700 400 M 800 0 L 800 400 M 900 0 L 900 400 M 1000 0 L 1000 400 M 1100 0 L 1100 400 M 1200 0 L 1200 400 M 1300 0 L 1300 400 M 1400 0 L 1400 400" stroke="#1e293b" stroke-width="1" />
+
+    <!-- Central Nexus Icon -->
+    <circle cx="750" cy="200" r="100" fill="url(#nexusPulse)" filter="url(#glow)">
+        <animate attributeName="r" values="90;110;90" dur="4s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Connection Lines -->
+    <g stroke="#38bdf8" stroke-width="2" opacity="0.4" filter="url(#glow)">
+        <path d="M 750 200 L 950 100">
+            <animate attributeName="stroke-dasharray" values="0,300;300,0" dur="2s" repeatCount="indefinite" />
+        </path>
+        <path d="M 750 200 L 550 100" />
+        <path d="M 750 200 L 950 300" />
+        <path d="M 750 200 L 550 300" />
+        <path d="M 750 200 L 1150 200" />
+        <path d="M 750 200 L 350 200" />
+    </g>
+
+    <!-- Nexus Hub Symbol -->
+    <g transform="translate(750, 200)" stroke="#f8fafc" stroke-width="4" fill="none" filter="url(#glow)">
+        <circle r="40" stroke-dasharray="20, 10">
+            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="10s" repeatCount="indefinite" />
+        </circle>
+        <path d="M -25 -25 L 25 25 M -25 25 L 25 -25" />
+        <circle r="15" fill="#38bdf8" stroke="none" />
+    </g>
+
+    <!-- Text Layout -->
+    <text x="750" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#f8fafc" filter="url(#glow)">NEXUS BROKER</text>
+    <text x="750" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" letter-spacing="4" fill="#64748b">THE INTELLIGENT INTERMEDIARY PROTOCOL</text>
+
+    <!-- Floating Data Points -->
+    <circle cx="350" cy="200" r="4" fill="#38bdf8" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="1150" cy="200" r="4" fill="#38bdf8" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite" />
+    </circle>
+</svg>

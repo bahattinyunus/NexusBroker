@@ -1,0 +1,28 @@
+[
+    {
+        "listing_id": "NXS-RE-001",
+        "owner_address": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "asset_type": "real_estate",
+        "title": "Cyber-Penthouse in Digital District",
+        "description": "Premium 360-degree view, fully integrated with Nexus Smart Home protocols.",
+        "price": {
+            "amount": 2500000,
+            "currency": "USDT"
+        },
+        "trust_score": 98,
+        "verified": true
+    },
+    {
+        "listing_id": "NXS-MA-042",
+        "owner_address": "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD",
+        "asset_type": "maritime",
+        "title": "Autonomous Tanker Slot - Baltic Route",
+        "description": "Available for immediate cargo injection. Optimized for low-emission transit.",
+        "price": {
+            "amount": 45000,
+            "currency": "USDT"
+        },
+        "trust_score": 95,
+        "verified": true
+    }
+]

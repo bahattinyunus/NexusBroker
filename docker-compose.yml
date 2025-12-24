@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  core:
+    build:
+      context: ./core
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./core:/app
+    environment:
+      - NEXUS_API_KEY=${NEXUS_API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  dashboard:
+    build:
+      context: ./dashboard
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./dashboard:/app
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    command: npm run dev
+
+  marketplace:
+    build:
+      context: ./marketplace
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./marketplace:/app
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    command: npm run dev
+
+networks:
+  nexus-net:
+    driver: bridge
