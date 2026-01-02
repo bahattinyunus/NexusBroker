@@ -61,21 +61,21 @@ NexusBroker mimarisi, yüksek frekanslı veri işleme kapasitesine sahip modern 
 
 ```mermaid
 graph TD
-    A[Market Requests / Signals] -->|Ingestion| B{Nexus Core Intelligence}
-    B -->|Neural Analysis| C[AI Matching Engine]
-    B -->|Smart Contract Call| D[Blockchain Trust Layer]
-    C -->|Vector Embeddings| E[Pinecone/Milvus DB]
-    D -->|Transaction Settlement| F[Smart Contracts (L2 / Sidechain)]
-    E -->|Similarity Search| G[Verified Pairings]
+    A["Market Requests / Signals"] -->|Ingestion| B{"Nexus Core Intelligence"}
+    B -->|Neural Analysis| C["AI Matching Engine"]
+    B -->|Smart Contract Call| D["Blockchain Trust Layer"]
+    C -->|Vector Embeddings| E["Pinecone/Milvus DB"]
+    D -->|Transaction Settlement| F["Smart Contracts (L2 / Sidechain)"]
+    E -->|Similarity Search| G["Verified Pairings"]
     F -->|Consensus| G
-    G -->|Execution| H[Final Deal & Commission Autonomy]
+    G -->|Execution| H["Final Deal & Commission Autonomy"]
     
-    subgraph "Intelligence Layer (Off-Chain)"
+    subgraph Intelligence ["Intelligence Layer (Off-Chain)"]
     C
     E
     end
     
-    subgraph "Trust Layer (On-Chain)"
+    subgraph Trust ["Trust Layer (On-Chain)"]
     D
     F
     end
