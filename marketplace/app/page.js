@@ -38,25 +38,68 @@ export default function MarketplaceHome() {
                     The world's first AI-driven P2P high-stakes marketplace. No brokers. No hidden fees. Just pure mathematical matching.
                 </p>
 
-                <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-                    <button style={{
-                        backgroundColor: '#38bdf8',
-                        color: '#020617',
-                        padding: '1rem 2rem',
-                        border: 'none',
-                        borderRadius: '0.5rem',
-                        fontWeight: 'bold',
-                        cursor: 'pointer'
-                    }}>Explore Assets</button>
-                    <button style={{
-                        backgroundColor: 'transparent',
-                        color: '#38bdf8',
-                        padding: '1rem 2rem',
-                        border: '2px solid #38bdf8',
-                        borderRadius: '0.5rem',
-                        fontWeight: 'bold',
-                        cursor: 'pointer'
-                    }}>List to Nexus</button>
+                <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ display: 'flex', gap: '1rem' }}>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Describe what you need (e.g., 'Panamax vessel for grain')"
+                            style={{
+                                padding: '1rem',
+                                borderRadius: '0.5rem',
+                                border: '1px solid #334155',
+                                backgroundColor: '#1e293b',
+                                color: 'white',
+                                width: '400px'
+                            }}
+                        />
+                        <button
+                            onClick={async () => {
+                                const query = document.getElementById('searchInput').value;
+                                const resultsDiv = document.getElementById('resultsArea');
+                                resultsDiv.innerHTML = '<div style="color: #38bdf8">Scanning Neural Network...</div>';
+
+                                try {
+                                    const res = await fetch('http://localhost:8000/match', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({
+                                            id: 'REQ-' + Math.random().toString(36).substr(2, 9),
+                                            sector: 'general',
+                                            type: 'buy',
+                                            asset: query,
+                                            details: {}
+                                        })
+                                    });
+                                    const data = await res.json();
+
+                                    if (data.matches && data.matches.length > 0) {
+                                        resultsDiv.innerHTML = data.matches.map(m => `
+                                            <div style="background: #0f172a; padding: 1rem; margin-top: 1rem; border: 1px solid #334155; border-radius: 0.5rem; text-align: left;">
+                                                <div style="color: #00FF00; font-weight: bold; font-size: 0.8rem;">MATCH SCORE: ${(m.score * 100).toFixed(1)}%</div>
+                                                <div style="color: #f8fafc; font-weight: bold;">${m.description}</div>
+                                                <div style="color: #94a3b8; font-size: 0.9rem;">${JSON.stringify(m.metadata)}</div>
+                                            </div>
+                                        `).join('');
+                                    } else {
+                                        resultsDiv.innerHTML = '<div style="color: #ef4444">No sufficient matches found in the vector space.</div>';
+                                    }
+                                } catch (e) {
+                                    console.error(e);
+                                    resultsDiv.innerHTML = '<div style="color: #ef4444">Connection to Nexus Core failed. Ensure backend is running.</div>';
+                                }
+                            }}
+                            style={{
+                                backgroundColor: '#38bdf8',
+                                color: '#020617',
+                                padding: '1rem 2rem',
+                                border: 'none',
+                                borderRadius: '0.5rem',
+                                fontWeight: 'bold',
+                                cursor: 'pointer'
+                            }}>Initialize Search</button>
+                    </div>
+                    <div id="resultsArea" style={{ width: '100%', maxWidth: '600px', marginTop: '1rem' }}></div>
                 </div>
             </section>
 
